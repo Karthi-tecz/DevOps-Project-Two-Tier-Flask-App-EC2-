@@ -41,36 +41,46 @@ ssh -i /path/to/key.pem ubuntu@<ec2-public-ip>
 
 🔹 Install Dependencies::
 sudo apt update && sudo apt upgrade -y
+
 sudo apt install git docker.io docker-compose-v2 -y
 
 🔹 Start Docker::
 sudo systemctl start docker
+
 sudo systemctl enable docker
-sudo usermod -aG docker $USER
+
+sudo usermod -aG docker $Ubuntu
+
 newgrp docker
 
 🔧 Jenkins Setup
 🔹 Install Java::
+
 sudo apt install -y openjdk-21-jdk
 
 🔹 Install Jenkins::
+
 wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 
 sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 
 sudo apt update
+
 sudo apt install -y jenkins
 
 🔹 Start Jenkins::
 sudo systemctl start jenkins
+
 sudo systemctl enable jenkins
 
 🔹 Unlock Jenkins::
+
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 Access Jenkins:
 
 http://<EC2-PUBLIC-IP>:8080
+
 🔗 GitHub Integration
 
 Connect Jenkins with your GitHub repository
